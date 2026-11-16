@@ -475,7 +475,7 @@
       }
       .mobile-toc summary::-webkit-details-marker { display: none; }
       .mobile-toc summary::after { content: "+"; float: right; color: var(--accent); }
-      .mobile-toc[open] summary::after { content: "?"; }
+      .mobile-toc[open] summary::after { content: "\2212"; }
       .mobile-toc ol { list-style: none; margin: 0; padding: 0 var(--space-4) var(--space-3); }
       .mobile-toc a {
         display: grid; grid-template-columns: 24px minmax(0, 1fr);
@@ -548,7 +548,7 @@
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div>
-        <p class="kicker">Bug bounty scope intelligence ? Reviewed 16 November 2026</p>
+        <p class="kicker">Bug bounty scope intelligence · Reviewed 16 November 2026</p>
         <h1 id="hero-title">Know what changed <em>before</em> you test.</h1>
         <p class="hero-lead">ScopeDiff stores every published scope revision, shows the exact targets that moved, disappeared or changed terms, and ranks the change against the hosts you actually test.</p>
         <div class="chips" aria-label="Technical summary">
