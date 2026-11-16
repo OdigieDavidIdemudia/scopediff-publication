@@ -1,0 +1,178 @@
+{
+  "$schema": "personal-design-standard-v1",
+  "meta": {
+    "name": "ScopeDiff Design Standard",
+    "version": "1.0.0",
+    "description": "Project copy of the personal design standard. Authoritative for ScopeDiff. Chosen variant: neobrutalism with minimalism restraint.",
+    "source": "../standards/standard.json",
+    "howToUse": [
+      "Read this file before any UI, branding, marketing or admin-console work.",
+      "Use the tokens in web/src/styles/tokens.css; do not introduce a second accent or a new style variant.",
+      "Both light and dark themes are required for every component.",
+      "Status colors communicate state only; they are never brand accents."
+    ]
+  },
+  "project": {
+    "name": "ScopeDiff",
+    "tagline": "Know what changed before you test.",
+    "audience": "Bug bounty hunters who triage scope changes before spending time on a target",
+    "tone": "Technical, direct, calm under pressure, never hypey",
+    "selectedVariant": "neobrutalism",
+    "variantNotes": "Neobrutalist structure (2px borders, hard offset shadows, blocky controls) held back with minimalist spacing, a single amber accent and a tight type scale. Amber is reserved for primary actions, active filters and materiality. Nothing else competes.",
+    "defaultMode": "light",
+    "modesRequired": ["light", "dark"]
+  },
+  "principles": [
+    "The diff is the product: hierarchy must make added, removed and changed obvious before any prose.",
+    "One accent: amber marks the action or the score, never both at once.",
+    "Structure over decoration: borders and offset shadows define clickable regions.",
+    "Published facts only: no invented confidence, no scanning language, no exploitation cues.",
+    "Accessible by default: AA contrast, 44px touch targets, visible focus, meaning never by color alone.",
+    "Motion confirms cause and effect, especially the simulation and the toast."
+  ],
+  "tokens": {
+    "color": {
+      "light": {
+        "background": "#F7F6F3",
+        "surface": "#FFFFFF",
+        "surface2": "#F1EFEA",
+        "surface3": "#E7E3DA",
+        "textPrimary": "#111111",
+        "textMuted": "#57534E",
+        "textSubtle": "#78716C",
+        "border": "#D6D1C7",
+        "borderStrong": "#111111",
+        "accent": "#B45309",
+        "accentBright": "#F59E0B",
+        "accentSoft": "#FEF3C7",
+        "accentInk": "#7C2D12",
+        "accentContrast": "#FFFFFF"
+      },
+      "dark": {
+        "background": "#0F0F0E",
+        "surface": "#171716",
+        "surface2": "#1F1F1D",
+        "surface3": "#2A2A27",
+        "textPrimary": "#FAFAF9",
+        "textMuted": "#B7B1AA",
+        "textSubtle": "#9C968F",
+        "border": "#33322F",
+        "borderStrong": "#E7E5E4",
+        "accent": "#F59E0B",
+        "accentBright": "#FBBF24",
+        "accentSoft": "#3A2A10",
+        "accentInk": "#FDE68A",
+        "accentContrast": "#111111"
+      },
+      "status": {
+        "green": { "light": "#15803D", "dark": "#4ADE80", "use": "in scope, opportunity, success" },
+        "red": { "light": "#B91C1C", "dark": "#F87171", "use": "risk, removed, error" },
+        "yellow": { "light": "#A16207", "dark": "#FACC15", "use": "partial revision, warning, pending" },
+        "blue": { "light": "#1D4ED8", "dark": "#93C5FD", "use": "informational links only" },
+        "neutral": { "light": "#57534E", "dark": "#A8A29E", "use": "neutral impact and baseline" }
+      }
+    },
+    "typography": {
+      "pairing": "technicalMono",
+      "heading": "Space Grotesk",
+      "body": "Inter",
+      "mono": "JetBrains Mono",
+      "scale": {
+        "eyebrow": "9px / 600 / 0.09em tracking / uppercase",
+        "body": "12px–14px / 400–500",
+        "h3": "14px / 600",
+        "h2": "20px–24px / 600",
+        "h1": "clamp(30px, 4vw, 46px) / 700",
+        "monoData": "9px–11px / 400–600"
+      },
+      "lineHeight": { "tight": 1.15, "body": 1.55, "relaxed": 1.7 }
+    },
+    "spacing": {
+      "unit": "px",
+      "scale": { "1": 4, "2": 8, "3": 12, "4": 16, "5": 24, "6": 32, "7": 48, "8": 64 }
+    },
+    "border": {
+      "width": "2px",
+      "strong": "2px solid var(--line-strong)",
+      "soft": "1px solid var(--line)",
+      "radius": { "sm": "3px", "md": "6px", "lg": "10px" }
+    },
+    "shadow": {
+      "hard": "4px 4px 0 var(--line-strong)",
+      "soft": "2px 2px 0 var(--line-strong)",
+      "accent": "4px 4px 0 var(--accent)",
+      "hover": "translate(2px, 2px) with a 2px shadow"
+    },
+    "motion": {
+      "durations": { "instant": "80ms", "fast": "150ms", "base": "220ms", "slow": "400ms" },
+      "easing": {
+        "standard": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "enter": "cubic-bezier(0, 0, 0.2, 1)",
+        "exit": "cubic-bezier(0.4, 0, 1, 1)",
+        "playful": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+      }
+    },
+    "layout": {
+      "maxWidth": "1280px",
+      "headerHeight": "64px",
+      "breakpoints": { "desktop": "1080px", "tablet": "900px", "mobile": "640px" }
+    }
+  },
+  "components": {
+    "button": {
+      "minHeight": "38px",
+      "primary": "amber background, accent-ink text, 2px border, hard shadow",
+      "secondary": "surface background, strong border, hard shadow",
+      "ghost": "transparent fill, soft border, no strong shadow",
+      "danger": "red text and border, red-soft fill",
+      "states": ["default", "hover", "active", "focus-visible", "disabled"]
+    },
+    "card": {
+      "background": "surface",
+      "border": "2px solid var(--line-strong)",
+      "shadow": "var(--shadow-hard)",
+      "padding": "16px–20px",
+      "radius": "var(--radius-md)"
+    },
+    "input": {
+      "height": "38px",
+      "border": "2px solid var(--line-strong)",
+      "focus": "var(--focus-ring)",
+      "monoVariant": ".input--mono"
+    },
+    "chips": {
+      "usage": "kind, platform, impact, confidence, scope and alert status",
+      "rule": "always include a text label; icon alone is never the meaning"
+    },
+    "materiality": {
+      "usage": "one weighted score out of 100 per change and per target",
+      "bar": "6px track with amber fill; score always visible in text"
+    },
+    "toast": {
+      "position": "fixed bottom-right desktop, bottom mobile",
+      "rule": "announce with role=status; errors use role=alert"
+    }
+  },
+  "accessibility": {
+    "minContrastText": "4.5:1",
+    "minContrastLargeText": "3:1",
+    "minTouchTarget": "44px",
+    "focusRing": { "width": "2px", "offset": "2px", "style": "solid" },
+    "neverConveyMeaningByColorAlone": true,
+    "rules": [
+      "Every filter button uses aria-pressed.",
+      "The mobile filter toggle exposes aria-expanded.",
+      "The toast is a live region and errors are assertive.",
+      "The skip link targets #main.",
+      "Reduced motion is respected by the global media query."
+    ]
+  },
+  "usageRules": [
+    "Use web/src/styles/tokens.css and globals.css. Do not add a second accent.",
+    "Amber is for primary actions, active filter state and materiality; status colors are for state only.",
+    "Keep borders at 2px and shadows hard and offset; never soften the core cards into generic SaaS shadows.",
+    "Demo content must stay fictional and use RFC 2606 domains and RFC 5737 ranges.",
+    "Marketing copy must never imply scanning, exploitation or unauthorized testing.",
+    "New screens need light and dark verification plus a 390px mobile pass."
+  ]
+}
