@@ -4,10 +4,9 @@ Static publication page for ScopeDiff. It follows `standards/publication-standar
 
 This is a technical record, not a marketing page. All examples use RFC 2606 domains and RFC 5737 ranges.
 
-## Publish
+## Published
 
-Publish this folder to a GitHub Pages repository named `scopediff-publication`.
-
-Expected URL: https://odigiedavididemudia.github.io/scopediff-publication/
+Live at: https://odigiedavididemudia.github.io/scopediff-publication/
 
 The canonical URL, Open Graph image and JSON-LD URL are set because the page is deployed.
+To update, copy `index.html` and `assets/` to the `scopediff-publication` repository and push to `main`; GitHub Pages rebuilds automatically.
