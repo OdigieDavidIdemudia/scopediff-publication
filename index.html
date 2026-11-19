@@ -730,7 +730,7 @@
       expectedInputs: [{ type: "text" }],
       expectedOutputs: [{ type: "text" }]
     },
-    promptOptions: { responseConstraint: schema }
+    promptOptions: { responseConstraint: onDeviceSchema }
   }
 });
 
@@ -741,6 +741,10 @@ console.log(result.response.inferenceSource);
 <p style="margin-top: var(--space-3); font-size: 12px; color: var(--muted);">The AI action first calls <code>await model.initializeDeviceModel()</code> inside the click handler, then sends the prompt.</p>
           </div>
         </div>
+        <figure class="figure">
+          <img src="assets/ai-on-device.png" alt="ScopeDiff AI Diff Analyst showing an ON-DEVICE INFERENCE label and 67,811 ms latency for a Gemini Nano run" style="display:block;width:100%;height:auto;border:1px solid var(--line);">
+          <figcaption>Verified on Chrome Desktop with the Gemini Nano CPU backend. The same click produced <strong>ON-DEVICE INFERENCE</strong> in 67,811&nbsp;ms; no cloud fallback was used.</figcaption>
+        </figure>
         <div class="callout">
           <span class="callout-label">Privacy by architecture</span>
           <p>On-device inference is the preferred path because the prompt stays local. The cloud fallback is explicit, not silent: the user sees the inference source and can decide whether to trust the result. The deterministic diff remains the source of truth.</p>
@@ -839,7 +843,7 @@ console.log(result.response.inferenceSource);
               <tr><td>Unauthenticated program read</td><td><span class="badge badge-pass">403 denied</span></td></tr>
               <tr><td>Security headers</td><td><span class="badge badge-pass">CSP · HSTS · XFO · nosniff</span></td></tr>
               <tr><td>Hybrid AI cloud fallback</td><td><span class="badge badge-pass">in_cloud verified</span></td></tr>
-              <tr><td>Hybrid AI on-device preference</td><td><span class="badge badge-partial">PREFER_ON_DEVICE · initializeDeviceModel</span></td></tr>
+              <tr><td>Hybrid AI on-device path</td><td><span class="badge badge-pass">ON_DEVICE verified · 67,811 ms</span></td></tr>
               <tr><td>OWASP Top 10</td><td><span class="badge badge-partial">5 pass · 4 partial · 1 fail</span></td></tr>
             </tbody>
           </table>
