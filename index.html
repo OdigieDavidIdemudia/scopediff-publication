@@ -712,7 +712,7 @@
         <p class="lead">The AI Diff Analyst turns an exact scope diff into a concise summary, a why-it-matters explanation, review priorities and caveats. It uses Firebase AI Logic hybrid inference.</p>
         <div class="split">
           <div class="prose">
-            <p>On supported Chrome Desktop hardware, the request runs against the on-device model. When the local model is unavailable, Firebase AI Logic automatically falls back to Gemini 3.5 Flash Lite in the cloud. The UI reports which source produced the answer and how long it took.</p>
+            <p>On supported Chrome Desktop hardware, the request runs against the on-device model. When the local model is unavailable, Firebase AI Logic automatically falls back to Gemini 3.5 Flash Lite in the cloud. The UI reports which source produced the answer and how long it took. The model is initialized from the user’s click (<code>initializeDeviceModel()</code>), which satisfies Chrome’s user-activation requirement before the first prompt.</p>
             <p>The prompt contains only public diff metadata. Email, Firebase UID, Slack webhook and the user’s private testing targets are excluded. The output is constrained JSON, parsed into fixed fields and rendered as text. The model has no tools and cannot write to Firestore.</p>
           </div>
           <div>
@@ -734,9 +734,11 @@
   }
 });
 
+await model.initializeDeviceModel();
 const result = await model.generateContent(prompt);
 console.log(result.response.inferenceSource);
 // "on_device" or "in_cloud"</code></pre>
+<p style="margin-top: var(--space-3); font-size: 12px; color: var(--muted);">The AI action first calls <code>await model.initializeDeviceModel()</code> inside the click handler, then sends the prompt.</p>
           </div>
         </div>
         <div class="callout">
@@ -837,7 +839,7 @@ console.log(result.response.inferenceSource);
               <tr><td>Unauthenticated program read</td><td><span class="badge badge-pass">403 denied</span></td></tr>
               <tr><td>Security headers</td><td><span class="badge badge-pass">CSP · HSTS · XFO · nosniff</span></td></tr>
               <tr><td>Hybrid AI cloud fallback</td><td><span class="badge badge-pass">in_cloud verified</span></td></tr>
-              <tr><td>Hybrid AI on-device preference</td><td><span class="badge badge-partial">PREFER_ON_DEVICE configured</span></td></tr>
+              <tr><td>Hybrid AI on-device preference</td><td><span class="badge badge-partial">PREFER_ON_DEVICE · initializeDeviceModel</span></td></tr>
               <tr><td>OWASP Top 10</td><td><span class="badge badge-partial">5 pass · 4 partial · 1 fail</span></td></tr>
             </tbody>
           </table>
