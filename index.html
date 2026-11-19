@@ -768,7 +768,8 @@ console.log(result.response.inferenceSource);
               <tr><td>Supported URL allowlist</td><td><span class="status status-pass">PASS</span></td><td>Only Bugcrowd, HackerOne and Intigriti URLs are accepted and revalidated by the cron.</td></tr>
               <tr><td>Auth + Firestore rules</td><td><span class="status status-pass">PASS</span></td><td>Users read/write only their own profile and pending watches; global program data is read-only.</td></tr>
               <tr><td>AI data minimisation</td><td><span class="status status-pass">PASS</span></td><td>No email, UID, webhook or private testing targets enter the prompt.</td></tr>
-              <tr><td>App Check / API-key restriction</td><td><span class="status status-partial">PARTIAL</span></td><td>Headers, rules and auth are in place; App Check and strict API-key restrictions are still a hardening item.</td></tr>
+              <tr><td>App Check (AI Logic)</td><td><span class="status status-pass">PASS</span></td><td>Registered debug token; enforced for Firebase AI Logic. Production should use reCAPTCHA Enterprise.</td></tr>
+              <tr><td>API-key restriction</td><td><span class="status status-partial">PARTIAL</span></td><td>Headers and rules are in place; the web API key still needs stricter API/referrer restrictions.</td></tr>
               <tr><td>Cron failure monitoring</td><td><span class="status status-fail">FAIL</span></td><td>Runs are logged and persisted, but failures do not yet page an operator.</td></tr>
             </tbody>
           </table>
@@ -804,7 +805,7 @@ console.log(result.response.inferenceSource);
               <li>The free plan checks every 30 minutes, not every minute.</li>
               <li>Queued baselines wait for the next GitHub Actions run; there is no instant fetch.</li>
               <li>Email digest is stored as a preference only. Slack is the implemented channel.</li>
-              <li>App Check and strict API-key restrictions are not yet enforced for the AI endpoint.</li>
+              <li>App Check is enforced for AI Logic with a registered debug token; Auth/Firestore and strict API-key restrictions remain hardening items.</li>
               <li>On-device inference is Chrome-on-Desktop only; other browsers use cloud fallback.</li>
               <li>Prompt injection is a bounded partial risk because scope metadata is untrusted public content.</li>
               <li>The FastAPI worker is not hosted on the free plan; Cloud Run would require billing.</li>
@@ -843,7 +844,8 @@ console.log(result.response.inferenceSource);
               <tr><td>Unauthenticated program read</td><td><span class="badge badge-pass">403 denied</span></td></tr>
               <tr><td>Security headers</td><td><span class="badge badge-pass">CSP · HSTS · XFO · nosniff</span></td></tr>
               <tr><td>Hybrid AI cloud fallback</td><td><span class="badge badge-pass">in_cloud verified</span></td></tr>
-              <tr><td>Hybrid AI on-device path</td><td><span class="badge badge-pass">ON_DEVICE verified · 67,811 ms</span></td></tr>
+              <tr><td>Hybrid AI on-device path</td><td><span class="badge badge-pass">ON_DEVICE verified · 40,264 ms live</span></td></tr>
+              <tr><td>App Check debug token exchange</td><td><span class="badge badge-pass">HTTP 200 · AI Logic enforced</span></td></tr>
               <tr><td>OWASP Top 10</td><td><span class="badge badge-partial">5 pass · 4 partial · 1 fail</span></td></tr>
             </tbody>
           </table>
